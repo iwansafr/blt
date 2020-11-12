@@ -2,7 +2,8 @@
 $this->extend('layout/dashboard');
 
 $this->section('content');
-
+$session = session();
+helper('system');
 ?>
 <main>
   <div class="container-fluid">
@@ -17,6 +18,11 @@ $this->section('content');
         Data User
       </div>
       <div class="card-body">
+        <?php
+        if (!empty($session->getFlashData('message'))) {
+          $message = $session->getFlashData('message');
+          alert($message['msg'], $message['alert']);
+        } ?>
         <div class="table-responsive">
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
@@ -48,7 +54,16 @@ $this->section('content');
                   <td><?php echo $value['username']; ?></td>
                   <td><?php echo $value['role']; ?></td>
                   <td><?php echo $value['password']; ?></td>
-                  <td><a href="/user/edit/<?php echo $value['id']; ?>" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a> <a href="" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a></td>
+                  <td>
+                    <div class="form-group form-inline">
+                      <a href="/user/edit/<?php echo $value['id']; ?>" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a> |
+                      <form action="/user/<?php echo $value['id']; ?>" method="post">
+                        <?= csrf_field() ?>
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                      </form>
+                    </div>
+                  </td>
                 </tr>
               <?php
                 $i++;

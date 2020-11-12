@@ -62,4 +62,16 @@ class UserController extends BaseController
       return redirect()->back()->withinput()->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
     }
   }
+
+  public function delete($id = 0)
+  {
+    if (!empty($id)) {
+      $user = new User();
+      if ($user->delete($id)) {
+        return redirect()->back()->with('message', ['msg' => 'Data Berhasil di Hapus', 'alert' => 'success']);
+      } else {
+        return redirect()->back()->with('message', ['msg' => 'Data Gagal di Hapus', 'alert' => 'danger']);
+      }
+    }
+  }
 }

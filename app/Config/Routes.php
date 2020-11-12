@@ -38,6 +38,7 @@ $routes->get('/user/edit/', 'UserController::edit/');
 $routes->get('/user/edit/(:num)', 'UserController::edit/$1');
 $routes->post('/user/edit', 'UserController::update');
 $routes->put('/user/edit/(:num)', 'UserController::update/$1');
+$routes->delete('/user/(:num)', 'UserController::delete/$1');
 
 /**
  * --------------------------------------------------------------------

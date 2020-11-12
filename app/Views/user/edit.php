@@ -9,7 +9,7 @@ $session = session();
     <h1 class="mt-4">Dashboard</h1>
     <ol class="breadcrumb mb-4">
       <li class="breadcrumb-item">Dashboard</li>
-      <li class="breadcrumb-item active">Edit User</li>
+      <li class="breadcrumb-item active"><?php echo !empty($data) ? 'Edit' : 'Tambah'; ?> User</li>
     </ol>
     <div class="card">
       <?php
@@ -30,7 +30,7 @@ $session = session();
         ?>
         <?= csrf_field() ?>
         <div class="card-header">
-          Tambah User
+          <?php echo !empty($data) ? 'Edit' : 'Tambah'; ?> User
         </div>
         <div class="card-body">
           <div class="form-group">
