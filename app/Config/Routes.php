@@ -40,6 +40,14 @@ $routes->post('/user/edit', 'UserController::update');
 $routes->put('/user/edit/(:num)', 'UserController::update/$1');
 $routes->delete('/user/(:num)', 'UserController::delete/$1');
 
+$routes->get('/blt', 'BltController::index');
+$routes->get('/blt/list', 'BltController::index');
+$routes->get('/blt/edit/', 'BltController::edit/');
+$routes->get('/blt/edit/(:num)', 'BltController::edit/$1');
+$routes->post('/blt/edit', 'BltController::update');
+$routes->put('/blt/edit/(:num)', 'BltController::update/$1');
+$routes->delete('/blt/(:num)', 'BltController::delete/$1');
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing

@@ -16,6 +16,42 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `blts`
+--
+
+DROP TABLE IF EXISTS `blts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `blts` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `nama` varchar(255) DEFAULT NULL,
+  `nik` varchar(45) DEFAULT NULL,
+  `alamat` text,
+  `pekerjaan` varchar(255) DEFAULT NULL,
+  `foto_diri` varchar(255) DEFAULT NULL,
+  `foto_ktp` varchar(255) DEFAULT NULL,
+  `foto_kk` varchar(255) DEFAULT NULL,
+  `foto_rumah` varchar(255) DEFAULT NULL,
+  `longitude` varchar(255) DEFAULT NULL,
+  `latitude` varchar(255) DEFAULT NULL,
+  `valid_count` tinyint(1) DEFAULT '1' COMMENT '1 = input by desa, 2 = valid by  kecamatan, 3 = valid by  dinsos, 4 = valid by =provinsi, 5 = valid by menteri',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blts`
+--
+
+LOCK TABLES `blts` WRITE;
+/*!40000 ALTER TABLE `blts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `blts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -52,4 +88,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-12 18:36:09
+-- Dump completed on 2020-11-13  6:12:11
