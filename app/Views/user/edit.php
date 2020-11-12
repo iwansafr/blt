@@ -57,7 +57,7 @@ $session = session();
             $option = [
               'name' => 'role',
               'class' => 'form-control',
-              'options' => ['1' => 'Admin', '2' => 'Operator']
+              'options' => $role
             ]
             ?>
             <?php echo form_dropdown($option); ?>

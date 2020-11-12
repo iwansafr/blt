@@ -22,4 +22,8 @@ class User extends Model
   // protected $validationRules = [];
   // protected $validationMessages = [];
   // protected $skipValidation = false;
+  public function role()
+  {
+    return ['1' => 'Root', '2' => 'Admin Kementerian', '3' => 'Admin Provinsi', '4' => 'Admin Dinsos', '5' => 'Admin Kecamatan', '6' => 'Admin Desa'];
+  }
 }

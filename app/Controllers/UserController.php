@@ -14,17 +14,17 @@ class UserController extends BaseController
   {
     $user = new User();
     $data = $user->findAll();
-    return view('user/index', ['data' => $data]);
+    return view('user/index', ['data' => $data, 'role' => $user->role()]);
   }
   public function edit($id = 0)
   {
     session();
     $data = [];
+    $user = new User();
     if (!empty($id)) {
-      $user = new User();
       $data = $user->find($id);
     }
-    return view('user/edit', ['validation' => \Config\Services::validation(), 'data' => $data]);
+    return view('user/edit', ['validation' => \Config\Services::validation(), 'data' => $data, 'role' => $user->role()]);
   }
   public function update($id = 0)
   {

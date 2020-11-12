@@ -30,7 +30,6 @@ helper('system');
                 <th>No</th>
                 <th>Username</th>
                 <th>Role</th>
-                <th>password</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -39,7 +38,6 @@ helper('system');
                 <th>No</th>
                 <th>Username</th>
                 <th>Role</th>
-                <th>password</th>
                 <th>Action</th>
               </tr>
             </tfoot>
@@ -52,8 +50,7 @@ helper('system');
                 <tr>
                   <td><?php echo $i; ?></td>
                   <td><?php echo $value['username']; ?></td>
-                  <td><?php echo $value['role']; ?></td>
-                  <td><?php echo $value['password']; ?></td>
+                  <td><?php echo $role[$value['role']]; ?></td>
                   <td>
                     <div class="form-group form-inline">
                       <a href="/user/edit/<?php echo $value['id']; ?>" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a> |
