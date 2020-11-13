@@ -42,11 +42,27 @@ class UserController extends BaseController
       $data['id'] = $user_data['id'];
     }
     if (!$this->validate([
-      'username' => 'required|is_unique[users.username,id,' . $id . ']',
-      'password' => 'required'
+      // 'username' => 'required|is_unique[users.username,id,' . $id . ']',
+      // 'password' => 'required'
+      'username' => [
+        'label' => 'Username',
+        'rules' => 'required|is_unique[users.username,id,' . $id . ']',
+        'errors' => [
+          'required' => '{field} Tidak Boleh Kosong',
+          'is_unique' => '{field} Sudah Ada',
+        ]
+      ],
+      'password' => [
+        'label' => 'Password',
+        'rules' => 'required',
+        'errors' => [
+          'required' => '{field} Tidak Boleh Kosong',
+        ]
+      ],
     ])) {
-      $validation = \Config\Services::validation();
-      return redirect()->back()->withinput()->with('validation', $validation);
+      // $validation = \Config\Services::validation();
+      // return redirect()->back()->withinput()->with('validation', $validation);
+      return redirect()->back()->withinput();
     }
 
     if ($user->save(

@@ -24,7 +24,7 @@ $session = session();
         <?php
         if (!empty($data)) {
         ?>
-          <input type="hidden" name="_method" value="PUT">
+          <input type="hidden" name="_method" value="POST">
         <?php
         }
         ?>
@@ -37,36 +37,60 @@ $session = session();
             <div class="col-md-6">
               <div class="form-group">
                 <label>Nama</label>
-                <?php $valid = !empty($validation->showError('nama')) ? 'is-invalid' : ''; ?>
-                <?php $value = !empty($data['nama']) ? $data['nama'] : old('nama'); ?>
-                <?php echo form_input(['name' => 'nama', 'placeholder' => 'nama', 'class' => 'form-control ' . $valid, 'value' => $value]); ?>
+                <?php
+                if (!empty($validation->showError('nama'))) {
+                  $valid = 'is-invalid';
+                  $value = old('nama');
+                } else {
+                  $valid = '';
+                  $value = !empty($data['nama']) ? $data['nama'] : old('nama');
+                }
+                echo form_input(['name' => 'nama', 'placeholder' => 'nama', 'class' => 'form-control ' . $valid, 'value' => $value]); ?>
                 <div class="invalid-feedback">
                   <?php echo $validation->showError('nama'); ?>
                 </div>
               </div>
               <div class="form-group">
                 <label>Nik</label>
-                <?php $valid = !empty($validation->showError('nik')) ? 'is-invalid' : ''; ?>
-                <?php $value = !empty($data['nik']) ? $data['nik'] : old('nik'); ?>
-                <?php echo form_input(['type' => 'number', 'name' => 'nik', 'placeholder' => 'nik', 'class' => 'form-control ' . $valid, 'value' => $value]); ?>
+                <?php
+                if (!empty($validation->showError('nik'))) {
+                  $valid = 'is-invalid';
+                  $value = old('nik');
+                } else {
+                  $valid = '';
+                  $value = !empty($data['nik']) ? $data['nik'] : old('nik');
+                }
+                echo form_input(['type' => 'number', 'name' => 'nik', 'placeholder' => 'nik', 'class' => 'form-control ' . $valid, 'value' => $value]); ?>
                 <div class="invalid-feedback">
                   <?php echo $validation->showError('nik'); ?>
                 </div>
               </div>
               <div class="form-group">
                 <label>Alamat</label>
-                <?php $valid = !empty($validation->showError('alamat')) ? 'is-invalid' : ''; ?>
-                <?php $value = !empty($data['alamat']) ? $data['alamat'] : old('alamat'); ?>
-                <?php echo form_textarea(['name' => 'alamat', 'placeholder' => 'alamat', 'class' => 'form-control ' . $valid, 'value' => $value]); ?>
+                <?php
+                if (!empty($validation->showError('alamat'))) {
+                  $valid = 'is-invalid';
+                  $value = old('alamat');
+                } else {
+                  $valid = '';
+                  $value = !empty($data['alamat']) ? $data['alamat'] : old('alamat');
+                }
+                echo form_textarea(['name' => 'alamat', 'placeholder' => 'alamat', 'class' => 'form-control ' . $valid, 'value' => $value]); ?>
                 <div class="invalid-feedback">
                   <?php echo $validation->showError('alamat'); ?>
                 </div>
               </div>
               <div class="form-group">
                 <label>Pekerjaan</label>
-                <?php $valid = !empty($validation->showError('pekerjaan')) ? 'is-invalid' : ''; ?>
-                <?php $value = !empty($data['pekerjaan']) ? $data['pekerjaan'] : old('pekerjaan'); ?>
-                <?php echo form_input(['name' => 'pekerjaan', 'placeholder' => 'pekerjaan', 'class' => 'form-control ' . $valid, 'value' => $value]); ?>
+                <?php
+                if (!empty($validation->showError('pekerjaan'))) {
+                  $valid = 'is-invalid';
+                  $value = old('pekerjaan');
+                } else {
+                  $valid = '';
+                  $value = !empty($data['pekerjaan']) ? $data['pekerjaan'] : old('pekerjaan');
+                }
+                echo form_input(['name' => 'pekerjaan', 'placeholder' => 'pekerjaan', 'class' => 'form-control ' . $valid, 'value' => $value]); ?>
                 <div class="invalid-feedback">
                   <?php echo $validation->showError('pekerjaan'); ?>
                 </div>
