@@ -24,7 +24,7 @@ class BltController extends BaseController
     if (!empty($id)) {
       $data = $blt->find($id);
     }
-    return view('blt/edit', ['validation' => \Config\Services::validation()]);
+    return view('blt/edit', ['validation' => \Config\Services::validation(), 'data' => $data]);
   }
   public function update($id = 0)
   {

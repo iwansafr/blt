@@ -78,7 +78,7 @@ $session = session();
                   <div class="form-group">
                     <label>Foto Diri</label>
                     <?php $valid = !empty($validation->showError('foto_diri')) ? 'is-invalid' : ''; ?>
-                    <?php $value = !empty($data['foto_diri']) ? $data['foto_diri'] : old('foto_diri'); ?>
+                    <?php $value = !empty($data['foto_diri']) ? '/images/blt/' . $data['foto_diri'] : old('foto_diri'); ?>
                     <div class="custom-file">
                       <?php
                       echo form_upload(['name' => 'foto_diri', 'id' => 'foto_diri', 'placeholder' => 'foto_diri', 'class' => 'custom-file-input ' . $valid, 'value' => $value, 'accept' => '.jpg,.jpeg,.png,.gif']);
@@ -87,13 +87,16 @@ $session = session();
                       <div class="invalid-feedback">
                         <?php echo $validation->showError('foto_diri'); ?>
                       </div>
-                      <img src="https://www.freeiconspng.com/uploads/no-image-icon-11.PNG" class="img image_place img-fluid" width="200" alt="Icon No Free Png" />
+                      <?php
+                      $gambar = !empty($data['foto_diri']) ? '/images/blt/' . $data['foto_diri'] : 'https://www.freeiconspng.com/uploads/no-image-icon-11.PNG';
+                      ?>
+                      <img src="<?php echo $gambar; ?>" class="img image_place img-fluid" width="200" alt="Icon No Free Png" />
                     </div>
                   </div>
                   <div class="form-group">
                     <label>Foto KTP</label>
                     <?php $valid = !empty($validation->showError('foto_ktp')) ? 'is-invalid' : ''; ?>
-                    <?php $value = !empty($data['foto_ktp']) ? $data['foto_ktp'] : old('foto_ktp'); ?>
+                    <?php $value = !empty($data['foto_ktp']) ? '/images/blt/' . $data['foto_ktp'] : old('foto_ktp'); ?>
                     <div class="custom-file">
                       <?php
                       echo form_upload(['name' => 'foto_ktp', 'id' => 'foto_ktp', 'placeholder' => 'foto_ktp', 'class' => 'custom-file-input ' . $valid, 'value' => $value, 'accept' => '.jpg,.jpeg,.png,.gif']);
@@ -102,7 +105,10 @@ $session = session();
                       <div class="invalid-feedback">
                         <?php echo $validation->showError('foto_ktp'); ?>
                       </div>
-                      <img src="https://www.freeiconspng.com/uploads/no-image-icon-11.PNG" class="img image_place img-fluid" width="200" alt="Icon No Free Png" />
+                      <?php
+                      $gambar = !empty($data['foto_ktp']) ? '/images/blt/' . $data['foto_ktp'] : 'https://www.freeiconspng.com/uploads/no-image-icon-11.PNG';
+                      ?>
+                      <img src="<?php echo $gambar; ?>" class="img image_place img-fluid" width="200" alt="Icon No Free Png" />
                     </div>
                   </div>
                 </div>
@@ -110,7 +116,7 @@ $session = session();
                   <div class="form-group">
                     <label>Foto KK</label>
                     <?php $valid = !empty($validation->showError('foto_kk')) ? 'is-invalid' : ''; ?>
-                    <?php $value = !empty($data['foto_kk']) ? $data['foto_kk'] : old('foto_kk'); ?>
+                    <?php $value = !empty($data['foto_kk']) ? '/images/blt/' . $data['foto_kk'] : old('foto_kk'); ?>
                     <div class="custom-file">
                       <?php
                       echo form_upload(['name' => 'foto_kk', 'id' => 'foto_kk', 'placeholder' => 'foto_kk', 'class' => 'custom-file-input ' . $valid, 'value' => $value, 'accept' => '.jpg,.jpeg,.png,.gif']);
@@ -119,13 +125,16 @@ $session = session();
                       <div class="invalid-feedback">
                         <?php echo $validation->showError('foto_kk'); ?>
                       </div>
-                      <img src="https://www.freeiconspng.com/uploads/no-image-icon-11.PNG" class="img image_place img-fluid" width="200" alt="Icon No Free Png" />
+                      <?php
+                      $gambar = !empty($data['foto_kk']) ? '/images/blt/' . $data['foto_kk'] : 'https://www.freeiconspng.com/uploads/no-image-icon-11.PNG';
+                      ?>
+                      <img src="<?php echo $gambar; ?>" class="img image_place img-fluid" width="200" alt="Icon No Free Png" />
                     </div>
                   </div>
                   <div class="form-group">
                     <label>Foto Rumah</label>
                     <?php $valid = !empty($validation->showError('foto_rumah')) ? 'is-invalid' : ''; ?>
-                    <?php $value = !empty($data['foto_rumah']) ? $data['foto_rumah'] : old('foto_rumah'); ?>
+                    <?php $value = !empty($data['foto_rumah']) ? '/images/blt/' . $data['foto_rumah'] : old('foto_rumah'); ?>
                     <div class="custom-file">
                       <?php
                       echo form_upload(['name' => 'foto_rumah', 'id' => 'foto_rumah', 'placeholder' => 'foto_rumah', 'class' => 'custom-file-input ' . $valid, 'value' => $value, 'accept' => '.jpg,.jpeg,.png,.gif']);
@@ -134,7 +143,10 @@ $session = session();
                       <div class="invalid-feedback">
                         <?php echo $validation->showError('foto_rumah'); ?>
                       </div>
-                      <img src="https://www.freeiconspng.com/uploads/no-image-icon-11.PNG" class="img image_place img-fluid" width="200" alt="Icon No Free Png" />
+                      <?php
+                      $gambar = !empty($data['foto_rumah']) ? '/images/blt/' . $data['foto_rumah'] : 'https://www.freeiconspng.com/uploads/no-image-icon-11.PNG';
+                      ?>
+                      <img src="<?php echo $gambar; ?>" class="img image_place img-fluid" width="200" alt="Icon No Free Png" />
                     </div>
                   </div>
                 </div>

@@ -28,16 +28,20 @@ helper('system');
             <thead>
               <tr>
                 <th>No</th>
-                <th>Username</th>
-                <th>Role</th>
+                <th>Nik</th>
+                <th>Nama</th>
+                <th>Alamat</th>
+                <th>Pekerjaan</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tfoot>
               <tr>
                 <th>No</th>
-                <th>Username</th>
-                <th>Role</th>
+                <th>Nik</th>
+                <th>Nama</th>
+                <th>Alamat</th>
+                <th>Pekerjaan</th>
                 <th>Action</th>
               </tr>
             </tfoot>
@@ -49,12 +53,14 @@ helper('system');
               ?>
                 <tr>
                   <td><?php echo $i; ?></td>
-                  <td><?php echo $value['username']; ?></td>
-                  <td><?php echo $role[$value['role']]; ?></td>
+                  <td><?php echo $value['nik']; ?></td>
+                  <td><?php echo $value['nama']; ?></td>
+                  <td><?php echo $value['alamat']; ?></td>
+                  <td><?php echo $value['pekerjaan']; ?></td>
                   <td>
                     <div class="form-group form-inline">
-                      <a href="/user/edit/<?php echo $value['id']; ?>" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a> |
-                      <form action="/user/<?php echo $value['id']; ?>" method="post">
+                      <a href="/blt/edit/<?php echo $value['id']; ?>" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a> |
+                      <form action="/blt/<?php echo $value['id']; ?>" method="post">
                         <?= csrf_field() ?>
                         <input type="hidden" name="_method" value="DELETE">
                         <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
