@@ -62,15 +62,15 @@ class UserController extends BaseController
     ])) {
       // $validation = \Config\Services::validation();
       // return redirect()->back()->withinput()->with('validation', $validation);
-      return redirect()->back()->withinput();
+      return redirect()->to('user/edit')->withinput();
     }
 
     if ($user->save(
       $data
     )) {
-      return redirect()->back()->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
+      return redirect()->back('user/edit')->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
     } else {
-      return redirect()->back()->withinput()->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
+      return redirect()->back('user/edit')->withinput()->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
     }
   }
 
@@ -79,10 +79,38 @@ class UserController extends BaseController
     if (!empty($id)) {
       $user = new User();
       if ($user->delete($id)) {
-        return redirect()->back()->with('message', ['msg' => 'Data Berhasil di Hapus', 'alert' => 'success']);
+        return redirect()->to('user/list')->with('message', ['msg' => 'Data Berhasil di Hapus', 'alert' => 'success']);
       } else {
-        return redirect()->back()->with('message', ['msg' => 'Data Gagal di Hapus', 'alert' => 'danger']);
+        return redirect()->to('user/list')->with('message', ['msg' => 'Data Gagal di Hapus', 'alert' => 'danger']);
       }
+    }
+  }
+  public function login()
+  {
+    return view('user/login', ['validation' => \Config\Services::validation()]);
+  }
+  public function auth()
+  {
+    helper('system');
+    if (!$this->validate([
+      'username' => 'required',
+      'password' => 'required'
+    ])) {
+      return redirect()->to('login')->withInput();
+    }
+    $data = $this->request->getPost();
+    $user = new User();
+    $user = $user->where(['username' => $data['username']])->first();
+    if (!empty($user)) {
+      if (decrypt($data['password'], $user['password'])) {
+        $data['logged_in'] = TRUE;
+        session()->set($data);
+        return redirect()->to('/')->withInput()->with('message', ['msg' => 'Welcome to BLT APP', 'alert' => 'success']);
+      } else {
+        return redirect()->to('login')->withInput()->with('message', ['msg' => 'Password is not Valid', 'alert' => 'danger']);
+      }
+    } else {
+      return redirect()->to('login')->withInput()->with('message', ['msg' => 'Username is not Registered', 'alert' => 'danger']);
     }
   }
 }

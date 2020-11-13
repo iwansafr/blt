@@ -111,7 +111,7 @@ class BltController extends BaseController
     if (!$this->validate($validation)) {
       // $validation = \Config\Services::validation();
       // return redirect()->back()->withinput()->with('validation', $validation);
-      return redirect()->back()->withinput();
+      return redirect()->to('blt/edit')->withinput();
     }
 
     $foto = [];
@@ -158,9 +158,9 @@ class BltController extends BaseController
     if ($blt->save(
       $data
     )) {
-      return redirect()->back()->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
+      return redirect()->to('blt/edit')->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
     } else {
-      return redirect()->back()->withinput()->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
+      return redirect()->to('blt/edit')->withinput()->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
     }
   }
 
@@ -184,9 +184,9 @@ class BltController extends BaseController
             unlink('images/blt/' . $data['foto_rumah']);
           }
         }
-        return redirect()->back()->with('message', ['msg' => 'Data Berhasil di Hapus', 'alert' => 'success']);
+        return redirect()->to('blt/edit')->with('message', ['msg' => 'Data Berhasil di Hapus', 'alert' => 'success']);
       } else {
-        return redirect()->back()->with('message', ['msg' => 'Data Gagal di Hapus', 'alert' => 'danger']);
+        return redirect()->to('blt/edit')->with('message', ['msg' => 'Data Gagal di Hapus', 'alert' => 'danger']);
       }
     }
   }
