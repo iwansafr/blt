@@ -22,7 +22,7 @@ class BltController extends BaseController
   {
     $blt = new Blt();
     $data = $blt->find($id);
-    return view('blt/detail', ['data' => $data]);
+    return view('blt/detail', ['data' => $data, 'valid' => $blt->valid()]);
   }
   public function edit($id = 0)
   {
