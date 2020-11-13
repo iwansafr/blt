@@ -8,7 +8,7 @@ $this->section('content');
     <h1 class="mt-4">Dashboard</h1>
     <ol class="breadcrumb mb-4">
       <li class="breadcrumb-item">Dashboard</li>
-      <li class="breadcrumb-item active">Content</li>
+      <li class="breadcrumb-item active">Login</li>
     </ol>
   </div>
   <div class="container">

@@ -41,6 +41,7 @@ $routes->put('/user/edit/(:num)', 'UserController::update/$1');
 $routes->delete('/user/(:num)', 'UserController::delete/$1');
 
 $routes->get('/blt', 'BltController::index');
+$routes->get('/blt/excel', 'BltController::excel');
 $routes->get('/blt/list', 'BltController::index');
 $routes->get('/blt/edit/', 'BltController::edit/');
 $routes->get('/blt/edit/(:num)', 'BltController::edit/$1');

@@ -23,6 +23,8 @@ helper('system');
           $message = $session->getFlashData('message');
           alert($message['msg'], $message['alert']);
         } ?>
+        <a href="/blt/excel" class="btn btn-sm btn-secondary"><i class="fa fa-file-excel"></i> Download</a>
+        <hr>
         <div class="table-responsive">
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>

@@ -2,6 +2,7 @@
 $this->extend('layout/dashboard');
 
 $this->section('content');
+// dd(session()->get());
 ?>
 <main>
   <div class="container-fluid">

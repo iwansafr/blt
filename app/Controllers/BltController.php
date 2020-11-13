@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\Blt;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class BltController extends BaseController
 {
@@ -189,5 +191,39 @@ class BltController extends BaseController
         return redirect()->to('blt/edit')->with('message', ['msg' => 'Data Gagal di Hapus', 'alert' => 'danger']);
       }
     }
+  }
+  public function excel()
+  {
+    $blt = new Blt();
+    $dataBlt = $blt->findAll();
+    $spreadsheet = new Spreadsheet();
+
+    $spreadsheet->setActiveSheetIndex(0)
+      ->setCellValue('A1', 'NIK')
+      ->setCellValue('B1', 'NAMA')
+      ->setCellValue('C1', 'ALAMAT')
+      ->setCellValue('D1', 'PEKERJAAN')
+      ->setCellValue('E1', 'LONGITUDE')
+      ->setCellValue('F1', 'LATITUDE');
+    $column = 2;
+    foreach ($dataBlt as $key => $value) {
+      $spreadsheet->setActiveSheetIndex(0)
+        ->setCellValue('A' . $column, $value['nik'])
+        ->setCellValue('B' . $column, $value['nama'])
+        ->setCellValue('C' . $column, $value['alamat'])
+        ->setCellValue('D' . $column, $value['pekerjaan'])
+        ->setCellValue('E' . $column, $value['longitude'])
+        ->setCellValue('F' . $column, $value['latitude']);
+      $column++;
+    }
+
+    $writer = new Xlsx($spreadsheet);
+    $fileName = 'Data Blt';
+
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
+    header('Cache-Control: max-age=0');
+
+    $writer->save('php://output');
   }
 }
