@@ -50,6 +50,7 @@ $routes->delete('/blt/(:num)', 'BltController::delete/$1');
 
 $routes->get('/login', 'UserController::login');
 $routes->post('/login', 'UserController::auth');
+$routes->get('/logout', 'UserController::logout');
 
 /**
  * --------------------------------------------------------------------

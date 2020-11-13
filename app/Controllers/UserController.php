@@ -89,6 +89,12 @@ class UserController extends BaseController
   {
     return view('user/login', ['validation' => \Config\Services::validation()]);
   }
+  public function logout()
+  {
+    session()->stop();
+    session()->destroy();
+    return redirect()->to('login');
+  }
   public function auth()
   {
     helper('system');
@@ -103,8 +109,8 @@ class UserController extends BaseController
     $user = $user->where(['username' => $data['username']])->first();
     if (!empty($user)) {
       if (decrypt($data['password'], $user['password'])) {
-        $data['logged_in'] = TRUE;
-        session()->set($data);
+        $user['logged_in'] = TRUE;
+        session()->set($user);
         return redirect()->to('/')->withInput()->with('message', ['msg' => 'Welcome to BLT APP', 'alert' => 'success']);
       } else {
         return redirect()->to('login')->withInput()->with('message', ['msg' => 'Password is not Valid', 'alert' => 'danger']);
