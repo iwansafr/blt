@@ -18,6 +18,12 @@ class BltController extends BaseController
     $data = $blt->findAll();
     return view('blt/index', ['data' => $data]);
   }
+  public function detail($id = 0)
+  {
+    $blt = new Blt();
+    $data = $blt->find($id);
+    return view('blt/detail', ['data' => $data]);
+  }
   public function edit($id = 0)
   {
     session();
@@ -113,7 +119,7 @@ class BltController extends BaseController
     if (!$this->validate($validation)) {
       // $validation = \Config\Services::validation();
       // return redirect()->back()->withinput()->with('validation', $validation);
-      return redirect()->to('blt/edit')->withinput();
+      return redirect()->to('/blt/edit/' . $id)->withinput();
     }
 
     $foto = [];
@@ -160,9 +166,9 @@ class BltController extends BaseController
     if ($blt->save(
       $data
     )) {
-      return redirect()->to('blt/edit')->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
+      return redirect()->to('/blt/edit/' . $id)->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
     } else {
-      return redirect()->to('blt/edit')->withinput()->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
+      return redirect()->to('/blt/edit/' . $id)->withinput()->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
     }
   }
 
@@ -186,9 +192,9 @@ class BltController extends BaseController
             unlink('images/blt/' . $data['foto_rumah']);
           }
         }
-        return redirect()->to('blt/edit')->with('message', ['msg' => 'Data Berhasil di Hapus', 'alert' => 'success']);
+        return redirect()->to('/blt/list')->with('message', ['msg' => 'Data Berhasil di Hapus', 'alert' => 'success']);
       } else {
-        return redirect()->to('blt/edit')->with('message', ['msg' => 'Data Gagal di Hapus', 'alert' => 'danger']);
+        return redirect()->to('/blt/list')->with('message', ['msg' => 'Data Gagal di Hapus', 'alert' => 'danger']);
       }
     }
   }

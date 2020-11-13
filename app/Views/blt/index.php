@@ -62,6 +62,7 @@ helper('system');
                   <td>
                     <div class="form-group form-inline">
                       <a href="/blt/edit/<?php echo $value['id']; ?>" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a> |
+                      <a href="/blt/detail/<?php echo $value['id']; ?>" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a> |
                       <form action="/blt/<?php echo $value['id']; ?>" method="post">
                         <?= csrf_field() ?>
                         <input type="hidden" name="_method" value="DELETE">
