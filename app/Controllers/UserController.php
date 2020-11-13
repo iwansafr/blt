@@ -29,22 +29,17 @@ class UserController extends BaseController
   public function update($id = 0)
   {
     helper('system');
+    $data = [
+      'username' => $this->request->getPost('username'),
+      'password' => encrypt($this->request->getPost('password')),
+      'role' => $this->request->getPost('role'),
+    ];
     if ($this->request->getMethod() == 'post') {
       $user = new User();
-      $data = [
-        'username' => $this->request->getPost('username'),
-        'password' => encrypt($this->request->getPost('password')),
-        'role' => $this->request->getPost('role'),
-      ];
     } else if ($this->request->getMethod() == 'put') {
       $user = new User();
       $user_data = $user->find($id);
-      $data = [
-        'id' => $user_data['id'],
-        'username' => $this->request->getPost('username'),
-        'password' => encrypt($this->request->getPost('password')),
-        'role' => $this->request->getPost('role'),
-      ];
+      $data['id'] = $user_data['id'];
     }
     if (!$this->validate([
       'username' => 'required|is_unique[users.username,id,' . $id . ']',

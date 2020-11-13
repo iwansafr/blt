@@ -29,32 +29,109 @@ class BltController extends BaseController
   public function update($id = 0)
   {
     helper('system');
+    // helper('file');
+    $data = [
+      'nama' => $this->request->getPost('nama'),
+      'nik' => $this->request->getPost('nik'),
+      'alamat' => $this->request->getPost('alamat'),
+      'pekerjaan' => $this->request->getPost('pekerjaan'),
+    ];
     if ($this->request->getMethod() == 'post') {
       $blt = new Blt();
-      $data = [
-        'nama' => $this->request->getPost('nama'),
-        'nik' => $this->request->getPost('nik'),
-        'alamat' => $this->request->getPost('alamat'),
-        'role' => $this->request->getPost('role'),
-      ];
     } else if ($this->request->getMethod() == 'put') {
       $blt = new Blt();
       $blt_data = $blt->find($id);
-      $data = [
-        'id' => $blt_data['id'],
-        'username' => $this->request->getPost('username'),
-        'password' => encrypt($this->request->getPost('password')),
-        'role' => $this->request->getPost('role'),
-      ];
+      $data['id'] = $blt_data['id'];
     }
     if (!$this->validate([
-      'username' => 'required|is_unique[users.username,id,' . $id . ']',
-      'password' => 'required'
+      'nik' => [
+        'label' => 'Nik',
+        'rules' => 'required|is_unique[blts.nik,id,' . $id . ']',
+        'errors' => [
+          'required' => '{field} Tidak Boleh Kosong',
+          'is_unique' => '{field} Sudah Ada',
+        ]
+      ],
+      'nama' => [
+        'label' => 'Nama',
+        'rules' => 'required',
+        'errors' => [
+          'required' => '{field} Tidak Boleh Kosong',
+        ]
+      ],
+      'alamat' => [
+        'label' => 'Alamat',
+        'rules' => 'required',
+        'errors' => [
+          'required' => '{field} Tidak Boleh Kosong',
+        ]
+      ],
+      'pekerjaan' => [
+        'label' => 'Pekerjaan',
+        'rules' => 'required',
+        'errors' => [
+          'required' => '{field} Tidak Boleh Kosong',
+        ]
+      ],
+      'foto_diri' => [
+        'label' => 'Foto Diri',
+        'rules' => 'uploaded[foto_diri]|is_image[foto_diri]',
+        'errors' => [
+          'uploaded' => '{field} Tidak Boleh Kosong',
+          'is_image' => 'format gambar {field} tidak sesuai'
+        ]
+      ],
+      'foto_ktp' => [
+        'label' => 'Foto KTP',
+        'rules' => 'uploaded[foto_ktp]|is_image[foto_ktp]',
+        'errors' => [
+          'uploaded' => '{field} Tidak Boleh Kosong',
+          'is_image' => 'format gambar {field} tidak sesuai'
+        ]
+      ],
+      'foto_kk' => [
+        'label' => 'Foto KK',
+        'rules' => 'uploaded[foto_kk]|is_image[foto_kk]',
+        'errors' => [
+          'uploaded' => '{field} Tidak Boleh Kosong',
+          'is_image' => 'format gambar {field} tidak sesuai'
+        ]
+      ],
+      'foto_rumah' => [
+        'label' => 'Foto Rumah',
+        'rules' => 'uploaded[foto_rumah]|is_image[foto_rumah]',
+        'errors' => [
+          'uploaded' => '{field} Tidak Boleh Kosong',
+          'is_image' => 'format gambar {field} tidak sesuai'
+        ]
+      ],
     ])) {
-      $validation = \Config\Services::validation();
-      return redirect()->back()->withinput()->with('validation', $validation);
+      // $validation = \Config\Services::validation();
+      // return redirect()->back()->withinput()->with('validation', $validation);
+      return redirect()->back()->withinput();
     }
 
+    $foto = [];
+    $file = $this->request->getFile('foto_diri');
+    $foto['foto_diri'] = 'foto_diri-' . $data['nik'] . '-' . $file->getClientExtension();
+    if ($file->move('images/blt/', $foto['foto_diri'])) {
+      $data['foto_diri'] = $foto['foto_diri'];
+    }
+    $file = $this->request->getFile('foto_ktp');
+    $foto['foto_ktp'] = 'foto_ktp-' . $data['nik'] . '-' . $file->getClientExtension();
+    if ($file->move('images/blt/', $foto['foto_ktp'])) {
+      $data['foto_ktp'] = $foto['foto_ktp'];
+    }
+    $file = $this->request->getFile('foto_kk');
+    $foto['foto_kk'] = 'foto_kk-' . $data['nik'] . '-' . $file->getClientExtension();
+    if ($file->move('images/blt/', $foto['foto_kk'])) {
+      $data['foto_kk'] = $foto['foto_kk'];
+    }
+    $file = $this->request->getFile('foto_rumah');
+    $foto['foto_rumah'] = 'foto_rumah-' . $data['nik'] . '-' . $file->getClientExtension();
+    if ($file->move('images/blt/', $foto['foto_rumah'])) {
+      $data['foto_rumah'] = $foto['foto_rumah'];
+    }
     if ($blt->save(
       $data
     )) {
