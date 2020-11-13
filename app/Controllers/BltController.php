@@ -66,6 +66,8 @@ class BltController extends BaseController
       'nik' => $this->request->getPost('nik'),
       'alamat' => $this->request->getPost('alamat'),
       'pekerjaan' => $this->request->getPost('pekerjaan'),
+      'latitude' => $this->request->getPost('latitude'),
+      'longitude' => $this->request->getPost('longitude'),
     ];
     if (empty($id)) {
       $blt = new Blt();
