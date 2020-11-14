@@ -16,53 +16,95 @@ $this->section('content');
         Detail
       </div>
       <div class="card-body">
-        <table class="table table-borderless">
-          <tr>
-            <td>Nama</td>
-            <td>: <?php echo $data['nama']; ?></td>
-          </tr>
-          <tr>
-            <td>NIK</td>
-            <td>: <?php echo $data['nik']; ?></td>
-          </tr>
-          <tr>
-            <td>Alamat</td>
-            <td>: <?php echo $data['alamat']; ?></td>
-          </tr>
-          <tr>
-            <td>Pekerjaan</td>
-            <td>: <?php echo $data['pekerjaan']; ?></td>
-          </tr>
-          <tr>
-            <td>Koordinat</td>
-            <td>: Longitude <?php echo $data['longitude']; ?> Latitude <?php echo $data['latitude']; ?> <a target="_blank" href="https://www.google.com/maps/dir//<?php echo $data['latitude']; ?>,<?php echo $data['longitude']; ?>/@<?php echo $data['latitude']; ?>,<?php echo $data['longitude']; ?>" class="btn btn-default btn-warning"><i class="fa fa-map"></i> Lihat Map</a></td>
-          </tr>
-          <tr>
-            <td>Progress</td>
-            <td>:
-              <div class="progress">
-                <!-- <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div> -->
-                <?php
-                foreach ($valid as $key => $value) {
-                  if ($key <= $data['valid_count']) {
-                ?>
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"><?php echo $value; ?></div>
-                  <?php
-                  } else {
-                  ?>
-                    <div class="progress-bar bg-secondary" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"><?php echo $value; ?></div>
-                <?php
-                  }
-                }
-                ?>
+        <div class="table-responsive">
+          <table class="table table-hovered">
+            <tr>
+              <td>Nama</td>
+              <td>: <?php echo $data['nama']; ?></td>
+            </tr>
+            <tr>
+              <td>NIK</td>
+              <td>: <?php echo $data['nik']; ?></td>
+            </tr>
+            <tr>
+              <td>Alamat</td>
+              <td>: <?php echo $data['alamat']; ?></td>
+            </tr>
+            <tr>
+              <td>Pekerjaan</td>
+              <td>: <?php echo $data['pekerjaan']; ?></td>
+            </tr>
+          </table>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>Foto Diri</label>
+              <br>
+              <img src="/images/blt/<?php echo $data['foto_diri']; ?>" class="img img-fluid" width="100%" alt="">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>Foto KTP</label>
+              <br>
+              <img src="/images/blt/<?php echo $data['foto_ktp']; ?>" class="img img-fluid" width="100%" alt="">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>Foto KK</label>
+              <br>
+              <img src="/images/blt/<?php echo $data['foto_kk']; ?>" class="img img-fluid" width="100%" alt="">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>Foto Rumah</label>
+              <br>
+              <img src="/images/blt/<?php echo $data['foto_rumah']; ?>" class="img img-fluid" width="100%" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <label for="">Progress</label>
+            <div class="row">
+              <?php foreach ($valid as $key => $value) {
+                if ($key <= $data['valid_count']) {
+              ?>
+              <div class="col-md-2">
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" disabled checked id="<?php echo $key; ?>">
+                  <label class="custom-control-label" for="<?php echo $key; ?>"><?php echo $value; ?></label>
+                </div>
               </div>
-            </td>
-          </tr>
-        </table>
+              <?php
+                } else {
+                ?>
+              <div class="col-md-2">
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" disabled id="<?php echo $key; ?>">
+                  <label class="custom-control-label" for="<?php echo $key; ?>"><?php echo $value; ?></label>
+                </div>
+              </div>
+              <?php
+                }
+              }
+              ?>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <label>Koordinat</label>
+            <b>: Longitude <?php echo $data['longitude']; ?> Latitude <?php echo $data['latitude']; ?> <a
+                target="_blank"
+                href="https://www.google.com/maps/dir//<?php echo $data['latitude']; ?>,<?php echo $data['longitude']; ?>/@<?php echo $data['latitude']; ?>,<?php echo $data['longitude']; ?>"
+                class="btn btn-default btn-warning"><i class="fa fa-map"></i> Lihat Map</a></b>
+          </div>
+        </div>
       </div>
-      <div class="card-footer"></div>
     </div>
+    <div class="card-footer"></div>
   </div>
 </main>
 <?php

@@ -12,6 +12,12 @@ class BltController extends BaseController
   {
     helper('form');
   }
+  public function list($valid = 1)
+  {
+    $blt = new Blt();
+    $data = $blt->where('valid_count', $valid)->find();
+    return view('blt/index', ['data' => $data]);
+  }
   public function index()
   {
     $blt = new Blt();
