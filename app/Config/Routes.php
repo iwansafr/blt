@@ -60,6 +60,13 @@ $routes->get('/login', 'UserController::login');
 $routes->post('/login', 'UserController::auth');
 $routes->get('/logout', 'UserController::logout');
 
+$routes->get('/saran', 'InboxController::list/1');
+$routes->post('/saran', 'InboxController::inboxin/1');
+$routes->get('/masukkan', 'InboxController::list/2');
+$routes->post('/masukkan', 'InboxController::inboxin/2');
+$routes->get('/pertanyaan', 'InboxController::list/3');
+$routes->post('/pertanaayn', 'InboxController::inboxin/3');
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing

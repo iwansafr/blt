@@ -55,8 +55,17 @@
       </div>
     </div>
     <div class="sb-sidenav-footer">
-      <div class="small">Logged in as:</div>
-      <?php echo !empty(session()->get('username')) ? session()->get('username') : 'guest'; ?>
+      <?php
+      if (!empty(session()->get('logged_in'))) {
+      ?>
+      <div class="small">Login sebagai:</div>
+      <?php echo !empty(session()->get('username')) ? session()->get('username') : 'guest';
+      } else {
+      ?>
+      <div class="small">Anda Belum</div>
+      Login
+      <?php
+      } ?>
     </div>
   </nav>
 </div>
