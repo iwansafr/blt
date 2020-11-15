@@ -17,6 +17,13 @@ $role = session()->get('role');
         Detail
       </div>
       <div class="card-body">
+        <?php
+        helper('system');
+        if (!empty(session()->getFlashData('message'))) {
+          $message = session()->getFlashData('message');
+          alert($message['msg'], $message['alert']);
+        }
+        ?>
         <div class="table-responsive">
           <table class="table table-hovered">
             <tr>
@@ -107,14 +114,16 @@ $role = session()->get('role');
     </div>
     <div class="card-footer">
       <?php
-      if ($data['valid_count'] == $role) {
+      if ($data['valid_count'] == $role && $role > 2) {
       ?>
-      <form action="" method="post">
+      <form action="/blt/valid/<?php echo $data['id']; ?>" method="post">
+        <?= csrf_field() ?>
+        <input type="hidden" name="_method" value="put">
         <div class="custom-control custom-switch">
-          <input type="checkbox" class="custom-control-input" id="verifikasi">
+          <input type="checkbox" class="custom-control-input" name="valid" id="verifikasi">
           <label class="custom-control-label" for="verifikasi">Kirim ke
             <?php echo $valid[$role - 1]; ?></label>
-          <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-plane"></i> Kirim</button>
+          <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</button>
         </div>
       </form>
       <?php

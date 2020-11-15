@@ -54,6 +54,7 @@ $routes->get('/blt/edit/(:num)', 'BltController::edit/$1');
 $routes->post('/blt/edit', 'BltController::update');
 $routes->post('/blt/edit/(:num)', 'BltController::update/$1');
 $routes->delete('/blt/(:num)', 'BltController::delete/$1');
+$routes->put('/blt/valid/(:num)', 'BltController::valid/$1');
 
 $routes->get('/login', 'UserController::login');
 $routes->post('/login', 'UserController::auth');

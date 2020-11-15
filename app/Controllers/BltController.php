@@ -243,4 +243,18 @@ class BltController extends BaseController
 
     $writer->save('php://output');
   }
+
+  public function valid($id = 0)
+  {
+    if (!empty($id)) {
+      $blt = new Blt();
+      $blt->find($id);
+      $valid_count = !empty($this->request->getVar('valid')) ? session()->get('role') - 1 : session()->get('role');
+      if ($blt->save(['id' => $id, 'valid_count' => $valid_count])) {
+        return redirect()->to('/blt/detail/' . $id)->with('message', ['msg' => 'Data Berhasil diPerbarui', 'alert' => 'success']);
+      } else {
+        return redirect()->to('/blt/detail/' . $id)->with('message', ['msg' => 'Data Gagal diPerbarui', 'alert' => 'danger']);
+      }
+    }
+  }
 }
