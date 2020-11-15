@@ -30,8 +30,7 @@ $this->section('content');
         <hr>
 
         <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
-          aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog">
             <form action="" method="post">
               <?= csrf_field(); ?>
@@ -88,11 +87,11 @@ $this->section('content');
               <?php
               foreach ($data as $key => $value) {
               ?>
-              <tr>
-                <td><?php echo $value['nama']; ?></td>
-                <td><?php echo $value['pesan']; ?></td>
-                <td><a href="/saran/<?php echo $value['id']; ?>"><i class="fa fa-eye"></i> Buka</a></td>
-              </tr>
+                <tr>
+                  <td><?php echo $value['nama']; ?></td>
+                  <td><?php echo $value['pesan']; ?></td>
+                  <td><a href="/<?php echo strtolower($title) . '/' . $value['id']; ?>"><i class="fa fa-eye"></i> Buka</a></td>
+                </tr>
               <?php
               }
               ?>

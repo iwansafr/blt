@@ -61,11 +61,14 @@ $routes->post('/login', 'UserController::auth');
 $routes->get('/logout', 'UserController::logout');
 
 $routes->get('/saran', 'InboxController::list/1');
+$routes->get('/saran/(:num)', 'InboxController::detail/$1');
 $routes->post('/saran', 'InboxController::inboxin/1');
+$routes->get('/masukkan/(:num)', 'InboxController::detail/$1');
 $routes->get('/masukkan', 'InboxController::list/2');
 $routes->post('/masukkan', 'InboxController::inboxin/2');
+$routes->post('/pertanyaan', 'InboxController::inboxin/3');
+$routes->get('/pertanyaan/(:num)', 'InboxController::detail/$1');
 $routes->get('/pertanyaan', 'InboxController::list/3');
-$routes->post('/pertanaayn', 'InboxController::inboxin/3');
 
 /**
  * --------------------------------------------------------------------

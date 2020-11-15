@@ -11,11 +11,17 @@ class InboxController extends BaseController
     $inbox = new Inbox();
     if ($tipe == 1) {
       return view('inbox/list', ['title' => 'Saran', 'data' => $inbox->where('tipe', 1)->find()]);
-    } else if ($tipe = 2) {
+    } else if ($tipe == 2) {
       return view('inbox/list', ['title' => 'Masukkan', 'data' => $inbox->where('tipe', 2)->find()]);
-    } else if ($tipe = 3) {
-      return view('inbox/list', ['title' => 'Pertanyaan']);
+    } else if ($tipe == 3) {
+      return view('inbox/list', ['title' => 'Pertanyaan', 'data' => $inbox->where('tipe', 3)->find()]);
     }
+  }
+  public function detail($id = 0)
+  {
+    $inbox = new Inbox();
+    $data = $inbox->find($id);
+    return view('inbox/detail', ['data' => $data]);
   }
   public function inboxin($tipe = 0)
   {
@@ -27,20 +33,18 @@ class InboxController extends BaseController
       'pesan' => $this->request->getPost('pesan'),
       'tipe' => $tipe,
     ];
+
     if ($tipe == 1) {
-      if ($inbox->save($post)) {
-        return redirect()->to('/saran')->with('message', ['msg' => 'Saran Berhasil dikirim', 'alert' => 'success']);
-      } else {
-        return redirect()->to('/saran')->with('message', ['msg' => 'Saran Gagal dikirim', 'alert' => 'danger']);
-      }
+      $title = 'saran';
     } else if ($tipe = 2) {
-      if ($inbox->save($post)) {
-        return redirect()->to('/masukan')->with('message', ['msg' => 'Saran Berhasil dikirim', 'alert' => 'success']);
-      } else {
-        return redirect()->to('/masukan')->with('message', ['msg' => 'Saran Gagal dikirim', 'alert' => 'danger']);
-      }
+      $title = 'masukkan';
     } else if ($tipe = 3) {
-      return view('inbox/list', ['title' => 'Pertanyaan']);
+      $title = 'pertanyaan';
+    }
+    if ($inbox->save($post)) {
+      return redirect()->to('/' . $title)->with('message', ['msg' => $title . ' Berhasil dikirim', 'alert' => 'success']);
+    } else {
+      return redirect()->to('/' . $title)->with('message', ['msg' => $title . ' Gagal dikirim', 'alert' => 'danger']);
     }
   }
 }
