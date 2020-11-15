@@ -28,7 +28,12 @@ class BltController extends BaseController
   {
     $blt = new Blt();
     $data = $blt->find($id);
-    return view('blt/detail', ['data' => $data, 'valid' => $blt->valid()]);
+    if (empty($data)) {
+      helper('system');
+      return view('layout/forbidden', ['msg' => 'Maaf Data tidak ditemukan', 'alert' => 'danger']);
+    } else {
+      return view('blt/detail', ['data' => $data, 'valid' => $blt->valid()]);
+    }
   }
   public function edit($id = 0)
   {

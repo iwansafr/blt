@@ -24,6 +24,6 @@ class Blt extends Model
   // protected $skipValidation = false;
   public function valid()
   {
-    return ['1' => 'Desa', '2' => 'Kecamatan', '3' => 'Dinsos', '4' => 'Provinsi', '5' => 'Kementerian'];
+    return ['6' => 'Desa', '5' => 'Kecamatan', '4' => 'Dinsos', '3' => 'Provinsi', '2' => 'Kementerian'];
   }
 }

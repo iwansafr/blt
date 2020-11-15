@@ -2,6 +2,7 @@
 $this->extend('layout/dashboard');
 
 $this->section('content');
+$role = session()->get('role');
 ?>
 <main>
   <div class="container-fluid">
@@ -71,7 +72,7 @@ $this->section('content');
             <label for="">Progress</label>
             <div class="row">
               <?php foreach ($valid as $key => $value) {
-                if ($key <= $data['valid_count']) {
+                if ($key >= $data['valid_count']) {
               ?>
               <div class="col-md-2">
                 <div class="custom-control custom-switch">
@@ -104,7 +105,30 @@ $this->section('content');
         </div>
       </div>
     </div>
-    <div class="card-footer"></div>
+    <div class="card-footer">
+      <?php
+      if ($data['valid_count'] == $role) {
+      ?>
+      <form action="" method="post">
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="verifikasi">
+          <label class="custom-control-label" for="verifikasi">Kirim ke
+            <?php echo $valid[$role - 1]; ?></label>
+          <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-plane"></i> Kirim</button>
+        </div>
+      </form>
+      <?php
+      } else {
+      ?>
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" checked disabled id="verifikasi">
+        <label class="custom-control-label" for="verifikasi">Sudah Masuk
+          <?php echo $valid[$data['valid_count']]; ?></label>
+      </div>
+      <?php
+      }
+      ?>
+    </div>
   </div>
 </main>
 <?php
