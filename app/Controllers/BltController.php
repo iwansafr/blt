@@ -87,6 +87,7 @@ class BltController extends BaseController
       'pekerjaan' => $this->request->getPost('pekerjaan'),
       'latitude' => $this->request->getPost('latitude'),
       'longitude' => $this->request->getPost('longitude'),
+      'valid_count' => session()->get('role')
     ];
     if (empty($id)) {
       $blt = new Blt();
@@ -139,9 +140,18 @@ class BltController extends BaseController
       $foto['foto_diri'] = 'foto_diri-' . $data['nik'] . '.' . $file->getClientExtension();
       if (file_exists('images/blt' . $foto['foto_diri'])) {
         unlink('images/blt/' . $foto['foto_diri']);
+        unlink('images/blt/thumb_' . $foto['foto_diri']);
       }
       if ($file->move('images/blt/', $foto['foto_diri'])) {
         $data['foto_diri'] = $foto['foto_diri'];
+        $image = \Config\Services::image()
+          ->withFile('images/blt/' . $foto['foto_diri'])
+          ->resize(200, 100, true, 'height')
+          ->save('images/blt/thumb_' . $foto['foto_diri']);
+        $image = \Config\Services::image()
+          ->withFile('images/blt/' . $foto['foto_diri'])
+          ->resize(300, 300, true, 'height')
+          ->save('images/blt/' . $foto['foto_diri']);
       }
     }
     $file = $this->request->getFile('foto_ktp');
@@ -149,9 +159,18 @@ class BltController extends BaseController
       $foto['foto_ktp'] = 'foto_ktp-' . $data['nik'] . '.' . $file->getClientExtension();
       if (file_exists('images/blt' . $foto['foto_ktp'])) {
         unlink('images/blt/' . $foto['foto_ktp']);
+        unlink('images/blt/thumb_' . $foto['foto_ktp']);
       }
       if ($file->move('images/blt/', $foto['foto_ktp'])) {
         $data['foto_ktp'] = $foto['foto_ktp'];
+        $image = \Config\Services::image()
+          ->withFile('images/blt/' . $foto['foto_ktp'])
+          ->resize(200, 100, true, 'height')
+          ->save('images/blt/thumb_' . $foto['foto_ktp']);
+        $image = \Config\Services::image()
+          ->withFile('images/blt/' . $foto['foto_ktp'])
+          ->resize(300, 300, true, 'height')
+          ->save('images/blt/' . $foto['foto_ktp']);
       }
     }
     $file = $this->request->getFile('foto_kk');
@@ -162,6 +181,14 @@ class BltController extends BaseController
       }
       if ($file->move('images/blt/', $foto['foto_kk'])) {
         $data['foto_kk'] = $foto['foto_kk'];
+        $image = \Config\Services::image()
+          ->withFile('images/blt/' . $foto['foto_kk'])
+          ->resize(200, 100, true, 'height')
+          ->save('images/blt/thumb_' . $foto['foto_kk']);
+        $image = \Config\Services::image()
+          ->withFile('images/blt/' . $foto['foto_kk'])
+          ->resize(300, 300, true, 'height')
+          ->save('images/blt/' . $foto['foto_kk']);
       }
     }
     $file = $this->request->getFile('foto_rumah');
@@ -169,9 +196,18 @@ class BltController extends BaseController
       $foto['foto_rumah'] = 'foto_rumah-' . $data['nik'] . '.' . $file->getClientExtension();
       if (file_exists('images/blt' . $foto['foto_rumah'])) {
         unlink('images/blt/' . $foto['foto_rumah']);
+        unlink('images/blt/thumb_' . $foto['foto_rumah']);
       }
       if ($file->move('images/blt/', $foto['foto_rumah'])) {
         $data['foto_rumah'] = $foto['foto_rumah'];
+        $image = \Config\Services::image()
+          ->withFile('images/blt/' . $foto['foto_rumah'])
+          ->resize(200, 100, true, 'height')
+          ->save('images/blt/thumb_' . $foto['foto_rumah']);
+        $image = \Config\Services::image()
+          ->withFile('images/blt/' . $foto['foto_rumah'])
+          ->resize(300, 300, true, 'height')
+          ->save('images/blt/' . $foto['foto_rumah']);
       }
     }
     if ($blt->save(
