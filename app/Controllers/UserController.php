@@ -62,15 +62,15 @@ class UserController extends BaseController
     ])) {
       // $validation = \Config\Services::validation();
       // return redirect()->back()->withinput()->with('validation', $validation);
-      return redirect()->to('user/edit')->withinput();
+      return redirect()->to('/user/edit')->withinput();
     }
 
     if ($user->save(
       $data
     )) {
-      return redirect()->back('user/edit')->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
+      return redirect()->to('/user/edit')->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
     } else {
-      return redirect()->back('user/edit')->withinput()->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
+      return redirect()->to('/user/edit')->withinput()->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
     }
   }
 
@@ -79,9 +79,9 @@ class UserController extends BaseController
     if (!empty($id)) {
       $user = new User();
       if ($user->delete($id)) {
-        return redirect()->to('user/list')->with('message', ['msg' => 'Data Berhasil di Hapus', 'alert' => 'success']);
+        return redirect()->to('/user/list')->with('message', ['msg' => 'Data Berhasil di Hapus', 'alert' => 'success']);
       } else {
-        return redirect()->to('user/list')->with('message', ['msg' => 'Data Gagal di Hapus', 'alert' => 'danger']);
+        return redirect()->to('/user/list')->with('message', ['msg' => 'Data Gagal di Hapus', 'alert' => 'danger']);
       }
     }
   }
@@ -93,7 +93,7 @@ class UserController extends BaseController
   {
     session()->stop();
     session()->destroy();
-    return redirect()->to('login');
+    return redirect()->to('/login');
   }
   public function auth()
   {
@@ -102,7 +102,7 @@ class UserController extends BaseController
       'username' => 'required',
       'password' => 'required'
     ])) {
-      return redirect()->to('login')->withInput();
+      return redirect()->to('/login')->withInput();
     }
     $data = $this->request->getPost();
     $user = new User();
@@ -113,10 +113,10 @@ class UserController extends BaseController
         session()->set($user);
         return redirect()->to('/')->withInput()->with('message', ['msg' => 'Welcome to BLT APP', 'alert' => 'success']);
       } else {
-        return redirect()->to('login')->withInput()->with('message', ['msg' => 'Password is not Valid', 'alert' => 'danger']);
+        return redirect()->to('/login')->withInput()->with('message', ['msg' => 'Password is not Valid', 'alert' => 'danger']);
       }
     } else {
-      return redirect()->to('login')->withInput()->with('message', ['msg' => 'Username is not Registered', 'alert' => 'danger']);
+      return redirect()->to('/login')->withInput()->with('message', ['msg' => 'Username is not Registered', 'alert' => 'danger']);
     }
   }
 }
