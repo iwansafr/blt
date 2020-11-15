@@ -10,46 +10,44 @@
         <?php
         if (!empty(session()->get('logged_in'))) {
         ?>
-        <div class="sb-sidenav-menu-heading">Admin</div>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts"
-          aria-expanded="false" aria-controls="collapseLayouts">
-          <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-          Data User
-          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-        </a>
-        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-          <nav class="sb-sidenav-menu-nested nav">
-            <a class="nav-link" href="/user/edit">Add User</a>
-            <a class="nav-link" href="/user/list">User List</a>
-          </nav>
-        </div>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseblt" aria-expanded="false"
-          aria-controls="collapseblt">
-          <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-          Data Penerima BLT
-          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-        </a>
-        <div class="collapse" id="collapseblt" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-          <nav class="sb-sidenav-menu-nested nav">
-            <?php
+          <div class="sb-sidenav-menu-heading">Admin</div>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+            Account
+            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+          </a>
+          <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+            <nav class="sb-sidenav-menu-nested nav">
+              <a class="nav-link" href="/user/edit">tambah Account</a>
+              <a class="nav-link" href="/user/list">List Account</a>
+            </nav>
+          </div>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseblt" aria-expanded="false" aria-controls="collapseblt">
+            <div class="sb-nav-link-icon"><i class="fa fa-money-bill-alt"></i></div>
+            BLT
+            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+          </a>
+          <div class="collapse" id="collapseblt" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+            <nav class="sb-sidenav-menu-nested nav">
+              <?php
               if (session()->get('role') == 1) {
-                echo '<a class="nav-link" href="/blt/edit">Tambah Calon Penerima</a>';
-                echo '<a class="nav-link" href="/blt/list">Data Calon Penerima</a>';
+                echo '<a class="nav-link" href="/blt/edit">Tambah Data</a>';
+                echo '<a class="nav-link" href="/blt/list">List Data</a>';
               } else if (session()->get('role') == 2) {
-                echo '<a class="nav-link" href="/blt/kementerian">Data Calon Penerima</a>';
+                echo '<a class="nav-link" href="/blt/kementerian">List Data</a>';
               } else if (session()->get('role') == 3) {
-                echo '<a class="nav-link" href="/blt/provinsi">Data Calon Penerima</a>';
+                echo '<a class="nav-link" href="/blt/provinsi">List Data</a>';
               } else if (session()->get('role') == 4) {
-                echo '<a class="nav-link" href="/blt/dinsos">Data Calon Penerima</a>';
+                echo '<a class="nav-link" href="/blt/dinsos">List Data</a>';
               } else if (session()->get('role') == 5) {
-                echo '<a class="nav-link" href="/blt/kecamatan">Data Calon Penerima</a>';
+                echo '<a class="nav-link" href="/blt/kecamatan">List Data</a>';
               } else if (session()->get('role') == 6) {
-                echo '<a class="nav-link" href="/blt/edit">Tambah Calon Penerima</a>';
-                echo '<a class="nav-link" href="/blt/desa">Data Calon Penerima</a>';
+                echo '<a class="nav-link" href="/blt/edit">Tambah Data</a>';
+                echo '<a class="nav-link" href="/blt/desa">List Data</a>';
               }
               ?>
-          </nav>
-        </div>
+            </nav>
+          </div>
         <?php
         } ?>
       </div>
@@ -58,12 +56,12 @@
       <?php
       if (!empty(session()->get('logged_in'))) {
       ?>
-      <div class="small">Login sebagai:</div>
+        <div class="small">Login sebagai:</div>
       <?php echo !empty(session()->get('username')) ? session()->get('username') : 'guest';
       } else {
       ?>
-      <div class="small">Anda Belum</div>
-      Login
+        <div class="small">Anda Belum</div>
+        Login
       <?php
       } ?>
     </div>
