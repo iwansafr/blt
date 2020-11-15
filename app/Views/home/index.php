@@ -39,50 +39,6 @@ $this->section('content');
         </div>
       </div>
     </div>
-    <?php
-    if (!empty(session()->get('logged_in'))) {
-    ?>
-    <div class="row">
-      <div class="col-xl-3 col-md-6">
-        <div class="card bg-primary text-white mb-4">
-          <div class="card-body">Primary Card</div>
-          <div class="card-footer d-flex align-items-center justify-content-between">
-            <a class="small text-white stretched-link" href="#">View Details</a>
-            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-md-6">
-        <div class="card bg-warning text-white mb-4">
-          <div class="card-body">Warning Card</div>
-          <div class="card-footer d-flex align-items-center justify-content-between">
-            <a class="small text-white stretched-link" href="#">View Details</a>
-            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-md-6">
-        <div class="card bg-success text-white mb-4">
-          <div class="card-body">Success Card</div>
-          <div class="card-footer d-flex align-items-center justify-content-between">
-            <a class="small text-white stretched-link" href="#">View Details</a>
-            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-md-6">
-        <div class="card bg-danger text-white mb-4">
-          <div class="card-body">Danger Card</div>
-          <div class="card-footer d-flex align-items-center justify-content-between">
-            <a class="small text-white stretched-link" href="#">View Details</a>
-            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <?php
-    }
-    ?>
     <div class="row">
       <div class="col-xl-6">
         <div class="card mb-4">
@@ -96,24 +52,19 @@ $this->section('content');
       <div class="col-xl-6">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
-            <a class="nav-link active" id="desa-tab" data-toggle="tab" href="#desa" role="tab" aria-controls="desa"
-              aria-selected="true">Desa</a>
+            <a class="nav-link active" id="desa-tab" data-toggle="tab" href="#desa" role="tab" aria-controls="desa" aria-selected="true">Desa</a>
           </li>
           <li class="nav-item" role="presentation">
-            <a class="nav-link" id="kecamatan-tab" data-toggle="tab" href="#kecamatan" role="tab"
-              aria-controls="kecamatan" aria-selected="false">Kecamatan</a>
+            <a class="nav-link" id="kecamatan-tab" data-toggle="tab" href="#kecamatan" role="tab" aria-controls="kecamatan" aria-selected="false">Kecamatan</a>
           </li>
           <li class="nav-item" role="presentation">
-            <a class="nav-link" id="dinsos-tab" data-toggle="tab" href="#dinsos" role="tab" aria-controls="dinsos"
-              aria-selected="false">Dinsos</a>
+            <a class="nav-link" id="dinsos-tab" data-toggle="tab" href="#dinsos" role="tab" aria-controls="dinsos" aria-selected="false">Dinsos</a>
           </li>
           <li class="nav-item" role="presentation">
-            <a class="nav-link" id="provinsi-tab" data-toggle="tab" href="#provinsi" role="tab" aria-controls="provinsi"
-              aria-selected="false">Provinsi</a>
+            <a class="nav-link" id="provinsi-tab" data-toggle="tab" href="#provinsi" role="tab" aria-controls="provinsi" aria-selected="false">Provinsi</a>
           </li>
           <li class="nav-item" role="presentation">
-            <a class="nav-link" id="kementerian-tab" data-toggle="tab" href="#kementerian" role="tab"
-              aria-controls="kementerian" aria-selected="false">Kementerian</a>
+            <a class="nav-link" id="kementerian-tab" data-toggle="tab" href="#kementerian" role="tab" aria-controls="kementerian" aria-selected="false">Kementerian</a>
           </li>
         </ul>
         <div class="tab-content" id="myTabContent">
@@ -144,11 +95,11 @@ $this->section('content');
                       <?php
                       foreach ($data_blt['desa'] as $key => $value) {
                       ?>
-                      <tr>
-                        <td><?php echo $value['nama']; ?></td>
-                        <td><?php echo $value['alamat']; ?></td>
-                        <td><?php echo $value['pekerjaan']; ?></td>
-                      </tr>
+                        <tr>
+                          <td><?php echo $value['nama']; ?></td>
+                          <td><?php echo $value['alamat']; ?></td>
+                          <td><?php echo $value['pekerjaan']; ?></td>
+                        </tr>
                       <?php
                       }
                       ?>
@@ -185,11 +136,11 @@ $this->section('content');
                       <?php
                       foreach ($data_blt['kecamatan'] as $key => $value) {
                       ?>
-                      <tr>
-                        <td><?php echo $value['nama']; ?></td>
-                        <td><?php echo $value['alamat']; ?></td>
-                        <td><?php echo $value['pekerjaan']; ?></td>
-                      </tr>
+                        <tr>
+                          <td><?php echo $value['nama']; ?></td>
+                          <td><?php echo $value['alamat']; ?></td>
+                          <td><?php echo $value['pekerjaan']; ?></td>
+                        </tr>
                       <?php
                       }
                       ?>
@@ -226,11 +177,11 @@ $this->section('content');
                       <?php
                       foreach ($data_blt['dinsos'] as $key => $value) {
                       ?>
-                      <tr>
-                        <td><?php echo $value['nama']; ?></td>
-                        <td><?php echo $value['alamat']; ?></td>
-                        <td><?php echo $value['pekerjaan']; ?></td>
-                      </tr>
+                        <tr>
+                          <td><?php echo $value['nama']; ?></td>
+                          <td><?php echo $value['alamat']; ?></td>
+                          <td><?php echo $value['pekerjaan']; ?></td>
+                        </tr>
                       <?php
                       }
                       ?>
@@ -267,11 +218,11 @@ $this->section('content');
                       <?php
                       foreach ($data_blt['provinsi'] as $key => $value) {
                       ?>
-                      <tr>
-                        <td><?php echo $value['nama']; ?></td>
-                        <td><?php echo $value['alamat']; ?></td>
-                        <td><?php echo $value['pekerjaan']; ?></td>
-                      </tr>
+                        <tr>
+                          <td><?php echo $value['nama']; ?></td>
+                          <td><?php echo $value['alamat']; ?></td>
+                          <td><?php echo $value['pekerjaan']; ?></td>
+                        </tr>
                       <?php
                       }
                       ?>
@@ -308,11 +259,11 @@ $this->section('content');
                       <?php
                       foreach ($data_blt['kementerian'] as $key => $value) {
                       ?>
-                      <tr>
-                        <td><?php echo $value['nama']; ?></td>
-                        <td><?php echo $value['alamat']; ?></td>
-                        <td><?php echo $value['pekerjaan']; ?></td>
-                      </tr>
+                        <tr>
+                          <td><?php echo $value['nama']; ?></td>
+                          <td><?php echo $value['alamat']; ?></td>
+                          <td><?php echo $value['pekerjaan']; ?></td>
+                        </tr>
                       <?php
                       }
                       ?>
@@ -332,38 +283,38 @@ $this->endSection();
 $this->section('js');
 ?>
 <script>
-$(document).ready(function() {
-  $('#dataTable6').DataTable();
-  $('#dataTable5').DataTable();
-  $('#dataTable4').DataTable();
-  $('#dataTable3').DataTable();
-  $('#dataTable2').DataTable();
-});
+  $(document).ready(function() {
+    $('#dataTable6').DataTable();
+    $('#dataTable5').DataTable();
+    $('#dataTable4').DataTable();
+    $('#dataTable3').DataTable();
+    $('#dataTable2').DataTable();
+  });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 <script>
-// Set new default font family and font color to mimic Bootstrap's default styling
-Chart.defaults.global.defaultFontFamily =
-  '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-Chart.defaults.global.defaultFontColor = '#292b2c';
+  // Set new default font family and font color to mimic Bootstrap's default styling
+  Chart.defaults.global.defaultFontFamily =
+    '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+  Chart.defaults.global.defaultFontColor = '#292b2c';
 
-// Pie Chart Example
-var ctx = document.getElementById("myPieChart");
-var to_desa = <?php echo count($data_blt['desa']); ?>;
-var to_kecamatan = <?php echo count($data_blt['kecamatan']); ?>;
-var to_dinsos = <?php echo count($data_blt['dinsos']); ?>;
-var to_provinsi = <?php echo count($data_blt['provinsi']); ?>;
-var to_kementerian = <?php echo count($data_blt['kementerian']); ?>;
-var myPieChart = new Chart(ctx, {
-  type: 'pie',
-  data: {
-    labels: ["Desa", "Kecamatan", "Dinsos", "Provinsi", "Kementerian"],
-    datasets: [{
-      data: [to_desa, to_kecamatan, to_dinsos, to_provinsi, to_kementerian],
-      backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745', '#795548'],
-    }],
-  },
-});
+  // Pie Chart Example
+  var ctx = document.getElementById("myPieChart");
+  var to_desa = <?php echo count($data_blt['desa']); ?>;
+  var to_kecamatan = <?php echo count($data_blt['kecamatan']); ?>;
+  var to_dinsos = <?php echo count($data_blt['dinsos']); ?>;
+  var to_provinsi = <?php echo count($data_blt['provinsi']); ?>;
+  var to_kementerian = <?php echo count($data_blt['kementerian']); ?>;
+  var myPieChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: ["Desa", "Kecamatan", "Dinsos", "Provinsi", "Kementerian"],
+      datasets: [{
+        data: [to_desa, to_kecamatan, to_dinsos, to_provinsi, to_kementerian],
+        backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745', '#795548'],
+      }],
+    },
+  });
 </script>
 <?php
 $this->endSection();
