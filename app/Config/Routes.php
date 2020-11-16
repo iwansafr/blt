@@ -39,6 +39,7 @@ $routes->get('/user/edit/(:num)', 'UserController::edit/$1');
 $routes->post('/user/edit', 'UserController::update');
 $routes->post('/user/update', 'UserController::update');
 $routes->put('/user/update/(:num)', 'UserController::update/$1');
+$routes->put('/user/edit/(:num)', 'UserController::update/$1');
 $routes->delete('/user/(:num)', 'UserController::delete/$1');
 
 $routes->get('/blt', 'BltController::index');
