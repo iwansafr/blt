@@ -20,7 +20,7 @@ $session = session();
       }
       ?>
 
-      <form action="/blt/edit/<?php echo !empty($data) ? $data['id'] : ''; ?>" method="post" enctype="multipart/form-data">
+      <form action="/blt<?php echo !empty($data) ? '/' . $data['id'] : ''; ?>" method="post" enctype="multipart/form-data">
         <?php
         if (!empty($data)) {
         ?>
