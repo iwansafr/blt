@@ -43,7 +43,7 @@ $routes->get('/', 'HomeController::index');
 // $routes->put('/user/edit/(:num)', 'UserController::update/$1');
 // $routes->delete('/user/(:num)', 'UserController::delete/$1');
 
-$routes->resource('user');
+$routes->resource('user', ['controller' => 'UserController']);
 
 $routes->get('/blt', 'BltController::index');
 $routes->get('/blt/detail/(:num)', 'BltController::detail/$1');
