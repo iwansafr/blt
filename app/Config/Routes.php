@@ -35,8 +35,6 @@ $routes->get('/', 'HomeController::index');
 
 $routes->resource('user', ['controller' => 'UserController']);
 
-$routes->resource('blt', ['controller' => 'BltController']);
-
 $routes->get('/blt/excel', 'BltController::excel');
 $routes->get('/blt/desa', 'BltController::list/6');
 $routes->get('/blt/kecamatan', 'BltController::list/5');
@@ -44,6 +42,9 @@ $routes->get('/blt/dinsos', 'BltController::list/4');
 $routes->get('/blt/provinsi', 'BltController::list/3');
 $routes->get('/blt/kementerian', 'BltController::list/2');
 $routes->put('/blt/valid/(:num)', 'BltController::valid/$1');
+
+$routes->resource('blt', ['controller' => 'BltController']);
+
 
 $routes->get('/login', 'UserController::login');
 $routes->post('/login', 'UserController::auth');
