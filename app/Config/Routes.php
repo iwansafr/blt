@@ -32,16 +32,16 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'HomeController::index');
-$routes->get('/user', 'UserController::index');
-$routes->get('/user/list', 'UserController::index');
-$routes->get('/user/edit/', 'UserController::edit/');
-$routes->get('/user/test/', 'UserController::edit/');
-$routes->get('/user/edit/(:num)', 'UserController::edit/$1');
-$routes->post('/user/edit', 'UserController::update');
-$routes->post('/user/update', 'UserController::update');
-$routes->put('/user/update/(:num)', 'UserController::update/$1');
-$routes->put('/user/edit/(:num)', 'UserController::update/$1');
-$routes->delete('/user/(:num)', 'UserController::delete/$1');
+// $routes->get('/user', 'UserController::index');
+// $routes->get('/user/list', 'UserController::index');
+// $routes->get('/user/edit/', 'UserController::edit/');
+// $routes->get('/user/test/', 'UserController::edit/');
+// $routes->get('/user/edit/(:num)', 'UserController::edit/$1');
+// $routes->post('/user/edit', 'UserController::update');
+// $routes->post('/user/update', 'UserController::update');
+// $routes->put('/user/update/(:num)', 'UserController::update/$1');
+// $routes->put('/user/edit/(:num)', 'UserController::update/$1');
+// $routes->delete('/user/(:num)', 'UserController::delete/$1');
 
 $routes->resource('user');
 
