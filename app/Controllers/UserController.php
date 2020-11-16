@@ -70,7 +70,7 @@ class UserController extends BaseController
     )) {
       return redirect()->to('/user/edit/' . $id)->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
     } else {
-      return redirect()->to('/user/edit/' . $id)->withinput()->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
+      return redirect()->to('/user/edit/' . $id)->withinput()->with('message', ['msg' => 'Data Gagal di simpan', 'alert' => 'danger']);
     }
   }
 
