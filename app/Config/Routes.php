@@ -35,6 +35,7 @@ $routes->get('/', 'HomeController::index');
 $routes->get('/user', 'UserController::index');
 $routes->get('/user/list', 'UserController::index');
 $routes->get('/user/edit/', 'UserController::edit/');
+$routes->get('/user/test/', 'UserController::edit/');
 $routes->get('/user/edit/(:num)', 'UserController::edit/$1');
 $routes->post('/user/edit', 'UserController::update');
 $routes->post('/user/update', 'UserController::update');
