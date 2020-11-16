@@ -14,7 +14,6 @@ class BltController extends BaseController
   }
   public function list($valid = 1)
   {
-    dd($valid);
     $blt = new Blt();
     $data = $blt->where('valid_count', $valid)->find();
     return view('blt/index', ['data' => $data]);
