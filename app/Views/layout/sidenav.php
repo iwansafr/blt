@@ -42,7 +42,7 @@
               } else if (session()->get('role') == 5) {
                 echo '<a class="nav-link" href="/blt/kecamatan">List Data</a>';
               } else if (session()->get('role') == 6) {
-                echo '<a class="nav-link" href="/blt">Tambah Data</a>';
+                echo '<a class="nav-link" href="/blt/new">Tambah Data</a>';
                 echo '<a class="nav-link" href="/blt/desa">List Data</a>';
               }
               ?>

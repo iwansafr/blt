@@ -36,6 +36,7 @@ $routes->get('/', 'HomeController::index');
 $routes->resource('user', ['controller' => 'UserController']);
 
 $routes->resource('blt', ['controller' => 'BltController']);
+
 $routes->get('/blt/excel', 'BltController::excel');
 $routes->get('/blt/desa', 'BltController::list/6');
 $routes->get('/blt/kecamatan', 'BltController::list/5');

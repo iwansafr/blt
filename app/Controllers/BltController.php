@@ -35,6 +35,12 @@ class BltController extends BaseController
       return view('blt/detail', ['data' => $data, 'valid' => $blt->valid()]);
     }
   }
+  public function new()
+  {
+    session();
+    $blt = new Blt();
+    return view('blt/edit', ['validation' => \Config\Services::validation()]);
+  }
   public function edit($id = 0)
   {
     session();
