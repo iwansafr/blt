@@ -34,9 +34,9 @@ class UserController extends BaseController
       'password' => encrypt($this->request->getPost('password')),
       'role' => $this->request->getPost('role'),
     ];
+    dd($data);
     if ($this->request->getMethod() == 'post') {
       $user = new User();
-      dd($data);
     } else if ($this->request->getMethod() == 'put') {
       $user = new User();
       $user_data = $user->find($id);
