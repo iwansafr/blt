@@ -58,7 +58,13 @@ $session = session();
               'name' => 'role',
               'class' => 'form-control',
               'options' => $role
-            ]
+            ];
+            if (!empty($data['role'])) {
+              $option['selected'] = $data['role'];
+            }
+            if (!empty(old('role'))) {
+              $option['selected'] = old('role');
+            }
             ?>
             <?php echo form_dropdown($option); ?>
           </div>
