@@ -62,15 +62,15 @@ class UserController extends BaseController
     ])) {
       // $validation = \Config\Services::validation();
       // return redirect()->back()->withinput()->with('validation', $validation);
-      return redirect()->to('/user/edit')->withinput();
+      return redirect()->to('/user/edit/' . $id)->withinput();
     }
 
     if ($user->save(
       $data
     )) {
-      return redirect()->to('/user/edit')->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
+      return redirect()->to('/user/edit/' . $id)->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
     } else {
-      return redirect()->to('/user/edit')->withinput()->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
+      return redirect()->to('/user/edit/' . $id)->withinput()->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
     }
   }
 
