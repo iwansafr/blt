@@ -18,8 +18,8 @@
           </a>
           <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
             <nav class="sb-sidenav-menu-nested nav">
-              <a class="nav-link" href="/user/edit">tambah Account</a>
-              <a class="nav-link" href="/user/list">List Account</a>
+              <a class="nav-link" href="/user/new">tambah Account</a>
+              <a class="nav-link" href="/user">List Account</a>
             </nav>
           </div>
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseblt" aria-expanded="false" aria-controls="collapseblt">

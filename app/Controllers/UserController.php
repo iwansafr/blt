@@ -62,15 +62,15 @@ class UserController extends BaseController
     ])) {
       // $validation = \Config\Services::validation();
       // return redirect()->back()->withinput()->with('validation', $validation);
-      return redirect()->to('/user/new/')->withinput();
+      return redirect()->back()->withinput();
     }
 
     if ($user->save(
       $data
     )) {
-      return redirect()->to('/user/new/')->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
+      return redirect()->back()->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
     } else {
-      return redirect()->to('/user/new/')->withinput()->with('message', ['msg' => 'Data Gagal di simpan', 'alert' => 'danger']);
+      return redirect()->back()->withinput()->with('message', ['msg' => 'Data Gagal di simpan', 'alert' => 'danger']);
     }
   }
   public function update($id = 0)
@@ -81,13 +81,9 @@ class UserController extends BaseController
       'password' => encrypt($this->request->getPost('password')),
       'role' => $this->request->getPost('role'),
     ];
-    if (empty($id)) {
-      $user = new User();
-    } else {
-      $user = new User();
-      $user_data = $user->find($id);
-      $data['id'] = $user_data['id'];
-    }
+    $user = new User();
+    $user_data = $user->find($id);
+    $data['id'] = $user_data['id'];
     if (!$this->validate([
       // 'username' => 'required|is_unique[users.username,id,' . $id . ']',
       // 'password' => 'required'
@@ -109,15 +105,15 @@ class UserController extends BaseController
     ])) {
       // $validation = \Config\Services::validation();
       // return redirect()->back()->withinput()->with('validation', $validation);
-      return redirect()->to('/user/edit/' . $id)->withinput();
+      return redirect()->back()->withinput();
     }
 
     if ($user->save(
       $data
     )) {
-      return redirect()->to('/user/edit/' . $id)->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
+      return redirect()->back()->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
     } else {
-      return redirect()->to('/user/edit/' . $id)->withinput()->with('message', ['msg' => 'Data Gagal di simpan', 'alert' => 'danger']);
+      return redirect()->back()->withinput()->with('message', ['msg' => 'Data Gagal di simpan', 'alert' => 'danger']);
     }
   }
 
@@ -126,9 +122,9 @@ class UserController extends BaseController
     if (!empty($id)) {
       $user = new User();
       if ($user->delete($id)) {
-        return redirect()->to('/user/list')->with('message', ['msg' => 'Data Berhasil di Hapus', 'alert' => 'success']);
+        return redirect()->back()->with('message', ['msg' => 'Data Berhasil di Hapus', 'alert' => 'success']);
       } else {
-        return redirect()->to('/user/list')->with('message', ['msg' => 'Data Gagal di Hapus', 'alert' => 'danger']);
+        return redirect()->back()->with('message', ['msg' => 'Data Gagal di Hapus', 'alert' => 'danger']);
       }
     }
   }

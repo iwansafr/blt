@@ -53,7 +53,7 @@ helper('system');
                   <td><?php echo $role[$value['role']]; ?></td>
                   <td>
                     <div class="form-group form-inline">
-                      <a href="/user/edit/<?php echo $value['id']; ?>" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a> |
+                      <a href="/user/<?php echo $value['id']; ?>/edit" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a> |
                       <form action="/user/<?php echo $value['id']; ?>" method="post">
                         <?= csrf_field() ?>
                         <input type="hidden" name="_method" value="DELETE">
