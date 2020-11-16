@@ -20,7 +20,7 @@ $session = session();
       }
       ?>
 
-      <form action="/user/edit/<?php echo !empty($data) ? $data['id'] : ''; ?>" method="post">
+      <form action="/user/edit/<?php echo !empty($data) ? $data['id'] : ''; ?>" method="POST">
         <?php
         if (!empty($data)) {
         ?>
