@@ -26,6 +26,10 @@ $session = session();
         ?>
           <input type="hidden" name="_method" value="PUT">
         <?php
+        } else {
+        ?>
+          <input type="hidden" name="_method" value="POST">
+        <?php
         }
         ?>
         <?= csrf_field() ?>
