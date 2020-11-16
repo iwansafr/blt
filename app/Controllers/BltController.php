@@ -24,7 +24,7 @@ class BltController extends BaseController
     $data = $blt->findAll();
     return view('blt/index', ['data' => $data]);
   }
-  public function detail($id = 0)
+  public function show($id = 0)
   {
     $blt = new Blt();
     $data = $blt->find($id);
@@ -40,19 +40,17 @@ class BltController extends BaseController
     session();
     $data = [];
     $blt = new Blt();
-    if (!empty($id)) {
-      $data = $blt->find($id);
-    }
+    $data = $blt->find($id);
     return view('blt/edit', ['validation' => \Config\Services::validation(), 'data' => $data]);
   }
-  public function update($id = 0)
+  public function create()
   {
     helper('system');
     // helper('file');
     $validation = [
       'nik' => [
         'label' => 'Nik',
-        'rules' => 'required|is_unique[blts.nik,id,' . $id . ']',
+        'rules' => 'required|is_unique[blts.nik,id,{id}]',
         'errors' => [
           'required' => '{field} Tidak Boleh Kosong',
           'is_unique' => '{field} Sudah Ada',
@@ -89,49 +87,43 @@ class BltController extends BaseController
       'longitude' => $this->request->getPost('longitude'),
       'valid_count' => session()->get('role')
     ];
-    if (empty($id)) {
-      $blt = new Blt();
-      $validation['foto_diri'] = [
-        'label' => 'Foto Diri',
-        'rules' => 'uploaded[foto_diri]|is_image[foto_diri]',
-        'errors' => [
-          'uploaded' => '{field} Tidak Boleh Kosong',
-          'is_image' => 'format gambar {field} tidak sesuai'
-        ]
-      ];
-      $validation['foto_ktp'] = [
-        'label' => 'Foto KTP',
-        'rules' => 'uploaded[foto_ktp]|is_image[foto_ktp]',
-        'errors' => [
-          'uploaded' => '{field} Tidak Boleh Kosong',
-          'is_image' => 'format gambar {field} tidak sesuai'
-        ]
-      ];
-      $validation['foto_kk'] = [
-        'label' => 'Foto KK',
-        'rules' => 'uploaded[foto_kk]|is_image[foto_kk]',
-        'errors' => [
-          'uploaded' => '{field} Tidak Boleh Kosong',
-          'is_image' => 'format gambar {field} tidak sesuai'
-        ]
-      ];
-      $validation['foto_rumah'] = [
-        'label' => 'Foto Rumah',
-        'rules' => 'uploaded[foto_rumah]|is_image[foto_rumah]',
-        'errors' => [
-          'uploaded' => '{field} Tidak Boleh Kosong',
-          'is_image' => 'format gambar {field} tidak sesuai'
-        ]
-      ];
-    } else {
-      $blt = new Blt();
-      $blt_data = $blt->find($id);
-      $data['id'] = $blt_data['id'];
-    }
+    $blt = new Blt();
+    $validation['foto_diri'] = [
+      'label' => 'Foto Diri',
+      'rules' => 'uploaded[foto_diri]|is_image[foto_diri]',
+      'errors' => [
+        'uploaded' => '{field} Tidak Boleh Kosong',
+        'is_image' => 'format gambar {field} tidak sesuai'
+      ]
+    ];
+    $validation['foto_ktp'] = [
+      'label' => 'Foto KTP',
+      'rules' => 'uploaded[foto_ktp]|is_image[foto_ktp]',
+      'errors' => [
+        'uploaded' => '{field} Tidak Boleh Kosong',
+        'is_image' => 'format gambar {field} tidak sesuai'
+      ]
+    ];
+    $validation['foto_kk'] = [
+      'label' => 'Foto KK',
+      'rules' => 'uploaded[foto_kk]|is_image[foto_kk]',
+      'errors' => [
+        'uploaded' => '{field} Tidak Boleh Kosong',
+        'is_image' => 'format gambar {field} tidak sesuai'
+      ]
+    ];
+    $validation['foto_rumah'] = [
+      'label' => 'Foto Rumah',
+      'rules' => 'uploaded[foto_rumah]|is_image[foto_rumah]',
+      'errors' => [
+        'uploaded' => '{field} Tidak Boleh Kosong',
+        'is_image' => 'format gambar {field} tidak sesuai'
+      ]
+    ];
     if (!$this->validate($validation)) {
       // $validation = \Config\Services::validation();
       // return redirect()->back()->withinput()->with('validation', $validation);
-      return redirect()->to('/blt/edit/' . $id)->withinput();
+      return redirect()->back()->withinput();
     }
 
     $foto = [];
@@ -213,9 +205,146 @@ class BltController extends BaseController
     if ($blt->save(
       $data
     )) {
-      return redirect()->to('/blt/edit/' . $id)->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
+      return redirect()->back()->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
     } else {
-      return redirect()->to('/blt/edit/' . $id)->withinput()->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
+      return redirect()->back()->withinput()->with('message', ['msg' => 'Data gagal di simpan', 'alert' => 'danger']);
+    }
+  }
+  public function update($id = 0)
+  {
+    helper('system');
+    // helper('file');
+    $validation = [
+      'nik' => [
+        'label' => 'Nik',
+        'rules' => 'required|is_unique[blts.nik,id,' . $id . ']',
+        'errors' => [
+          'required' => '{field} Tidak Boleh Kosong',
+          'is_unique' => '{field} Sudah Ada',
+        ]
+      ],
+      'nama' => [
+        'label' => 'Nama',
+        'rules' => 'required',
+        'errors' => [
+          'required' => '{field} Tidak Boleh Kosong',
+        ]
+      ],
+      'alamat' => [
+        'label' => 'Alamat',
+        'rules' => 'required',
+        'errors' => [
+          'required' => '{field} Tidak Boleh Kosong',
+        ]
+      ],
+      'pekerjaan' => [
+        'label' => 'Pekerjaan',
+        'rules' => 'required',
+        'errors' => [
+          'required' => '{field} Tidak Boleh Kosong',
+        ]
+      ],
+    ];
+    $data = [
+      'nama' => $this->request->getPost('nama'),
+      'nik' => $this->request->getPost('nik'),
+      'alamat' => $this->request->getPost('alamat'),
+      'pekerjaan' => $this->request->getPost('pekerjaan'),
+      'latitude' => $this->request->getPost('latitude'),
+      'longitude' => $this->request->getPost('longitude'),
+      'valid_count' => session()->get('role')
+    ];
+    $blt = new Blt();
+    $blt_data = $blt->find($id);
+    $data['id'] = $blt_data['id'];
+    if (!$this->validate($validation)) {
+      // $validation = \Config\Services::validation();
+      // return redirect()->back()->withinput()->with('validation', $validation);
+      return redirect()->back()->withinput();
+    }
+
+    $foto = [];
+    $file = $this->request->getFile('foto_diri');
+    if (!empty($file->getClientExtension())) {
+      $foto['foto_diri'] = 'foto_diri-' . $data['nik'] . '.' . $file->getClientExtension();
+      if (file_exists('images/blt' . $foto['foto_diri'])) {
+        unlink('images/blt/' . $foto['foto_diri']);
+        unlink('images/blt/thumb_' . $foto['foto_diri']);
+      }
+      if ($file->move('images/blt/', $foto['foto_diri'])) {
+        $data['foto_diri'] = $foto['foto_diri'];
+        $image = \Config\Services::image()
+          ->withFile('images/blt/' . $foto['foto_diri'])
+          ->resize(200, 100, true, 'height')
+          ->save('images/blt/thumb_' . $foto['foto_diri']);
+        $image = \Config\Services::image()
+          ->withFile('images/blt/' . $foto['foto_diri'])
+          ->resize(300, 300, true, 'height')
+          ->save('images/blt/' . $foto['foto_diri']);
+      }
+    }
+    $file = $this->request->getFile('foto_ktp');
+    if (!empty($file->getClientExtension())) {
+      $foto['foto_ktp'] = 'foto_ktp-' . $data['nik'] . '.' . $file->getClientExtension();
+      if (file_exists('images/blt' . $foto['foto_ktp'])) {
+        unlink('images/blt/' . $foto['foto_ktp']);
+        unlink('images/blt/thumb_' . $foto['foto_ktp']);
+      }
+      if ($file->move('images/blt/', $foto['foto_ktp'])) {
+        $data['foto_ktp'] = $foto['foto_ktp'];
+        $image = \Config\Services::image()
+          ->withFile('images/blt/' . $foto['foto_ktp'])
+          ->resize(200, 100, true, 'height')
+          ->save('images/blt/thumb_' . $foto['foto_ktp']);
+        $image = \Config\Services::image()
+          ->withFile('images/blt/' . $foto['foto_ktp'])
+          ->resize(300, 300, true, 'height')
+          ->save('images/blt/' . $foto['foto_ktp']);
+      }
+    }
+    $file = $this->request->getFile('foto_kk');
+    if (!empty($file->getClientExtension())) {
+      $foto['foto_kk'] = 'foto_kk-' . $data['nik'] . '.' . $file->getClientExtension();
+      if (file_exists('images/blt' . $foto['foto_kk'])) {
+        unlink('images/blt/' . $foto['foto_kk']);
+      }
+      if ($file->move('images/blt/', $foto['foto_kk'])) {
+        $data['foto_kk'] = $foto['foto_kk'];
+        $image = \Config\Services::image()
+          ->withFile('images/blt/' . $foto['foto_kk'])
+          ->resize(200, 100, true, 'height')
+          ->save('images/blt/thumb_' . $foto['foto_kk']);
+        $image = \Config\Services::image()
+          ->withFile('images/blt/' . $foto['foto_kk'])
+          ->resize(300, 300, true, 'height')
+          ->save('images/blt/' . $foto['foto_kk']);
+      }
+    }
+    $file = $this->request->getFile('foto_rumah');
+    if (!empty($file->getClientExtension())) {
+      $foto['foto_rumah'] = 'foto_rumah-' . $data['nik'] . '.' . $file->getClientExtension();
+      if (file_exists('images/blt' . $foto['foto_rumah'])) {
+        unlink('images/blt/' . $foto['foto_rumah']);
+        unlink('images/blt/thumb_' . $foto['foto_rumah']);
+      }
+      if ($file->move('images/blt/', $foto['foto_rumah'])) {
+        $data['foto_rumah'] = $foto['foto_rumah'];
+        $image = \Config\Services::image()
+          ->withFile('images/blt/' . $foto['foto_rumah'])
+          ->resize(200, 100, true, 'height')
+          ->save('images/blt/thumb_' . $foto['foto_rumah']);
+        $image = \Config\Services::image()
+          ->withFile('images/blt/' . $foto['foto_rumah'])
+          ->resize(300, 300, true, 'height')
+          ->save('images/blt/' . $foto['foto_rumah']);
+      }
+    }
+    if ($blt->save(
+      $data
+    )) {
+      return redirect()->back()->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
+    } else {
+      return redirect()->back()->withinput()->with('message', ['msg' => 'Data Gagal di simpan', 'alert' => 'danger']);
     }
   }
 
@@ -239,9 +368,9 @@ class BltController extends BaseController
             unlink('images/blt/' . $data['foto_rumah']);
           }
         }
-        return redirect()->to('/blt/list')->with('message', ['msg' => 'Data Berhasil di Hapus', 'alert' => 'success']);
+        return redirect()->back()->with('message', ['msg' => 'Data Berhasil di Hapus', 'alert' => 'success']);
       } else {
-        return redirect()->to('/blt/list')->with('message', ['msg' => 'Data Gagal di Hapus', 'alert' => 'danger']);
+        return redirect()->back()->with('message', ['msg' => 'Data Gagal di Hapus', 'alert' => 'danger']);
       }
     }
   }
@@ -287,9 +416,9 @@ class BltController extends BaseController
       $blt->find($id);
       $valid_count = !empty($this->request->getVar('valid')) ? session()->get('role') - 1 : session()->get('role');
       if ($blt->save(['id' => $id, 'valid_count' => $valid_count])) {
-        return redirect()->to('/blt/detail/' . $id)->with('message', ['msg' => 'Data Berhasil diPerbarui', 'alert' => 'success']);
+        return redirect()->back()->with('message', ['msg' => 'Data Berhasil diPerbarui', 'alert' => 'success']);
       } else {
-        return redirect()->to('/blt/detail/' . $id)->with('message', ['msg' => 'Data Gagal diPerbarui', 'alert' => 'danger']);
+        return redirect()->back()->with('message', ['msg' => 'Data Gagal diPerbarui', 'alert' => 'danger']);
       }
     }
   }

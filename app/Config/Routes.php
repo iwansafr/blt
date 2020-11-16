@@ -32,33 +32,16 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'HomeController::index');
-// $routes->get('/user', 'UserController::index');
-// $routes->get('/user/list', 'UserController::index');
-// $routes->get('/user/edit/', 'UserController::edit/');
-// $routes->get('/user/test/', 'UserController::edit/');
-// $routes->get('/user/edit/(:num)', 'UserController::edit/$1');
-// $routes->post('/user/edit', 'UserController::update');
-// $routes->post('/user/update', 'UserController::update');
-// $routes->put('/user/update/(:num)', 'UserController::update/$1');
-// $routes->put('/user/edit/(:num)', 'UserController::update/$1');
-// $routes->delete('/user/(:num)', 'UserController::delete/$1');
 
 $routes->resource('user', ['controller' => 'UserController']);
 
-$routes->get('/blt', 'BltController::index');
-$routes->get('/blt/detail/(:num)', 'BltController::detail/$1');
+$routes->resource('blt', ['controller' => 'BltController']);
 $routes->get('/blt/excel', 'BltController::excel');
-$routes->get('/blt/list', 'BltController::index');
 $routes->get('/blt/desa', 'BltController::list/6');
 $routes->get('/blt/kecamatan', 'BltController::list/5');
 $routes->get('/blt/dinsos', 'BltController::list/4');
 $routes->get('/blt/provinsi', 'BltController::list/3');
 $routes->get('/blt/kementerian', 'BltController::list/2');
-$routes->get('/blt/edit/', 'BltController::edit/');
-$routes->get('/blt/edit/(:num)', 'BltController::edit/$1');
-$routes->post('/blt/edit', 'BltController::update');
-$routes->post('/blt/edit/(:num)', 'BltController::update/$1');
-$routes->delete('/blt/(:num)', 'BltController::delete/$1');
 $routes->put('/blt/valid/(:num)', 'BltController::valid/$1');
 
 $routes->get('/login', 'UserController::login');
