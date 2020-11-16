@@ -26,6 +26,52 @@ class UserController extends BaseController
     }
     return view('user/edit', ['validation' => \Config\Services::validation(), 'data' => $data, 'role' => $user->role()]);
   }
+  public function new()
+  {
+    session();
+    return view('user/edit', ['validation' => \Config\Services::validation(), 'role' => $user->role()]);
+  }
+  public function create()
+  {
+    helper('system');
+    $data = [
+      'username' => $this->request->getPost('username'),
+      'password' => encrypt($this->request->getPost('password')),
+      'role' => $this->request->getPost('role'),
+    ];
+    $user = new User();
+    if (!$this->validate([
+      // 'username' => 'required|is_unique[users.username,id,' . $id . ']',
+      // 'password' => 'required'
+      'username' => [
+        'label' => 'Username',
+        'rules' => 'required|is_unique[users.username,id,{id}]',
+        'errors' => [
+          'required' => '{field} Tidak Boleh Kosong',
+          'is_unique' => '{field} Sudah Ada',
+        ]
+      ],
+      'password' => [
+        'label' => 'Password',
+        'rules' => 'required',
+        'errors' => [
+          'required' => '{field} Tidak Boleh Kosong',
+        ]
+      ],
+    ])) {
+      // $validation = \Config\Services::validation();
+      // return redirect()->back()->withinput()->with('validation', $validation);
+      return redirect()->to('/user/edit/')->withinput();
+    }
+
+    if ($user->save(
+      $data
+    )) {
+      return redirect()->to('/user/edit/')->with('message', ['msg' => 'Data Berhasil di simpan', 'alert' => 'success']);
+    } else {
+      return redirect()->to('/user/edit/')->withinput()->with('message', ['msg' => 'Data Gagal di simpan', 'alert' => 'danger']);
+    }
+  }
   public function update($id = 0)
   {
     helper('system');

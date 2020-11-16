@@ -43,6 +43,8 @@ $routes->put('/user/update/(:num)', 'UserController::update/$1');
 $routes->put('/user/edit/(:num)', 'UserController::update/$1');
 $routes->delete('/user/(:num)', 'UserController::delete/$1');
 
+$routes->resource('user');
+
 $routes->get('/blt', 'BltController::index');
 $routes->get('/blt/detail/(:num)', 'BltController::detail/$1');
 $routes->get('/blt/excel', 'BltController::excel');
