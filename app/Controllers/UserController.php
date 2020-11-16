@@ -29,6 +29,7 @@ class UserController extends BaseController
   public function new()
   {
     session();
+    $user = new User();
     return view('user/edit', ['validation' => \Config\Services::validation(), 'role' => $user->role()]);
   }
   public function create()
